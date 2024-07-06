@@ -15,7 +15,7 @@ pipeline {
        }
        stage('Code Analysis') {
             environment {
-                scannerHome = tool 'SonarScanner'
+                scannerHome = tool 'Sonar-Scanner'
             }
             steps {
                 script {
