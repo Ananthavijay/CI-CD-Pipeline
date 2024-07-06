@@ -4,6 +4,7 @@ pipeline {
    environment {
        DOCKER_HUB_REPO = "ananthavijay/flask-cred-api"
        CONTAINER_NAME = "flask-cred-api"
+       DOCKERHUB_CREDENTIALS=credentials('Dockerhub-Credentials')
    }
   
    stages {
@@ -22,6 +23,13 @@ pipeline {
            steps {
                echo "Deploying...."
                bat "docker run -d -p 5000:5000 --name ${CONTAINER_NAME} ${DOCKER_HUB_REPO}"
+           }
+       }
+      stage('Push') {
+           steps {
+               echo 'Pushing image..'
+               bat "echo ${DOCKERHUB_CREDENTIALS_PSW} | docker login -u ${DOCKERHUB_CREDENTIALS_USR} --password-stdin"
+               bat "docker push ${DOCKER_HUB_REPO}:latest"
            }
        }
    }
