@@ -22,6 +22,8 @@ pipeline {
        stage('Deploy') {
            steps {
                echo "Deploying...."
+               bat 'docker stop $CONTAINER_NAME || true'
+               bat 'docker rm $CONTAINER_NAME || true'
                bat "docker run -d -p 5000:5000 --name ${CONTAINER_NAME} ${DOCKER_HUB_REPO}"
            }
        }
