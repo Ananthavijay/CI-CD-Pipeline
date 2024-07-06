@@ -14,15 +14,14 @@ pipeline {
        }
        stage('Build') {
            steps {
-               echo 'Building..'
-               echo "${DOCKER_HUB_REPO}:latest"
+               echo "Building.."
                bat "docker image build -t ${DOCKER_HUB_REPO}:latest ."
            }
        }
        stage('Deploy') {
            steps {
-               echo 'Deploying....'
-               bat 'docker run -d -p 5000:5000 --name ${CONTAINER_NAME} ${DOCKER_HUB_REPO}'
+               echo "Deploying...."
+               bat "docker run -d -p 5000:5000 --name ${CONTAINER_NAME} ${DOCKER_HUB_REPO}"
            }
        }
    }
