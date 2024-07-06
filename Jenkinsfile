@@ -4,13 +4,12 @@ pipeline {
    environment {
        DOCKER_HUB_REPO = "ananthavijay/flask-cred-api"
        CONTAINER_NAME = "flask-cred-api"
- 
    }
   
    stages {
        stage('Checkout') {
            steps {
-               checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/Ananthavijay/CI-CD-pipeline']]])
+               checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/Ananthavijay/CI-CD-pipeline']]])
            }
        }
        stage('Build') {
