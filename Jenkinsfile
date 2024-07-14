@@ -8,11 +8,13 @@ pipeline {
    }
   
    stages {
-       /* stage('Checkout') {
+        /* 
+          stage('Checkout') {
            steps {
                checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/Ananthavijay/CI-CD-pipeline']]])
            }
-       } */
+       } 
+       */
        stage('Code Analysis') {
             environment {
                 scannerHome = tool 'Sonar-Scanner'
